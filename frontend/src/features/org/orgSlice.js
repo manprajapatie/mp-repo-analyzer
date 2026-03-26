@@ -8,7 +8,7 @@ export const fetchOrg = createAsyncThunk(
         try {
             return await getOrganization(org);
         } catch (err) {
-            return rejectWithValue
+            return rejectWithValue(err);
         }
     }
 );
@@ -22,17 +22,18 @@ const orgSlice = createSlice({
     },
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase((fetchOrg.pending, (state) => {
-            state.loading = true;
-        }))
-        .addCase((fetchOrg.fulfilled, (state, action) => {
-            state.loading = false;
-            state.data = action.payload;
-        }))
-        .addCase((fetchOrg.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-        }));
+        builder
+            .addCase(fetchOrg.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(fetchOrg.fulfilled, (state, action) => {
+                state.loading = false;
+                state.data = action.payload;
+            })
+            .addCase(fetchOrg.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            });
     }
 })
 
