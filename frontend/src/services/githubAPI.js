@@ -1,12 +1,13 @@
 import axiosInstance from "./axiosInstance";
 import { ENDPOINTS } from "./endpoints";
+import { handleRequest } from "../utils/errorHandlingWrapper"
 
 //get Organization
 export const getOrganization = (org) => handleRequest(() => axiosInstance.get(ENDPOINTS.GET_ORG(org)))
 
 //get Teams
-export const getTeams = (org) => handleRequest(() => axiosInstance.get(
-    ENDPOINTS.GET_TEAMS(org)))
+// export const getTeams = (org) => handleRequest(() => axiosInstance.get(
+//     ENDPOINTS.GET_TEAMS(org)))
 
 //get Repositories
 export const getRepositories = (org) => handleRequest(() => axiosInstance.get(

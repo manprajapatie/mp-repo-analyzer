@@ -10,7 +10,8 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((config) => {
   const token = import.meta.env.VITE_GITHUB_TOKEN;
-
+  console.log(`token>>>> ${token}`);
+  
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
