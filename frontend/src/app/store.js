@@ -6,6 +6,8 @@ import repoReducer from "../features/repos/repoSlice"
 import pullReducer from "../features/pulls/pullSlice"
 import analyticsReducer from "../features/analytics/analyticsSlice"
 
+import searchReducer from "../features/search/searchSlice"
+
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +15,9 @@ export const store = configureStore({
         repos: repoReducer,
         //teams: teamReducer,
         pulls: pullReducer,
-        analytics: analyticsReducer
+        analytics: analyticsReducer,
+
+        //Search Slice
+        search: searchReducer,
     }
 });
