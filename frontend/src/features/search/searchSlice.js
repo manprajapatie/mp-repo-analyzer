@@ -41,5 +41,5 @@ const searchSlice = createSlice({
     }
 })
 
-export const {setSearchQuery, toggleRepoSelection, updateFilters, resetSearch} = searchSlice.actions;
+export const { setSearchQuery, toggleRepoSelection, updateFilters, resetSearch } = searchSlice.actions;
 export default searchSlice.reducer
