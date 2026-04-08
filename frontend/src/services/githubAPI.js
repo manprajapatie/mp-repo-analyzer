@@ -16,6 +16,12 @@ export const getRepositories = (org) => handleRequest(() => axiosInstance.get(
 //get Pull Requests
 export const getPullRequests = (owner, repo) => handleRequest(() => axiosInstance.get(ENDPOINTS.GET_PULLS(owner, repo)))
 
+//get languages
+export const getLanguages = (owner, repo) => handleRequest(() => axiosInstance.get(ENDPOINTS.GET_LANGUAGE(owner, repo)))
+
+//get contributors
+export const getContributors = (owner, repo) => handleRequest(() => axiosInstance.get(ENDPOINTS.GET_CONTRIBUTORS(owner, repo)))
+
 //get Commits
 export const getCommits = (owner, repo) => handleRequest(() => axiosInstance.get(ENDPOINTS.GET_COMMITS(owner, repo)))
 
