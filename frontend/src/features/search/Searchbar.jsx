@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSearchQuery } from './searchSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Searchbar = () => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [inputValue, setInputValue] = useState("facebook")
     const data = useSelector((state) => state.search)
@@ -13,6 +15,9 @@ const Searchbar = () => {
     const handleSearch = (e) => {
         e.preventDefault();
         dispatch(setSearchQuery(inputValue))
+
+        // navigate to org
+        navigate(`/org/${inputValue}`);
     }
 
     return (
@@ -33,7 +38,7 @@ const Searchbar = () => {
             </form>
 
             <form action="">
-                
+
             </form>
 
             {/* For Data Checking */}
