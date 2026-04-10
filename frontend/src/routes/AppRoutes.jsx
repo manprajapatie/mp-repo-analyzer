@@ -6,15 +6,26 @@ import Dashboard from '../pages/Dashboard'
 const AppRoutes = () => {
   return (
     <>
+
       <Routes>
+        {/* Landing Page */}
         <Route
           path='/'
-          element={<Dashboard />}
-        />
-        <Route
-          path='/home'
           element={<Home />}
         />
+
+        {/* Org Dashboard (dynamic) */}
+        <Route
+          path='/org/:orgName'
+          element={<Dashboard />}
+        />
+
+        {/* Repo Detail (dynamic) */}
+        <Route
+          path='/repo/:owner/:repo'
+          element={<Dashboard />}
+        />
+
       </Routes>
     </>
   )
