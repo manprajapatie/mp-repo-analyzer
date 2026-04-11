@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home'
 import Dashboard from '../pages/Dashboard'
+import RepoDetails from '../pages/RepoDetails'
 
 const AppRoutes = () => {
   return (
@@ -23,7 +24,7 @@ const AppRoutes = () => {
         {/* Repo Detail (dynamic) */}
         <Route
           path='/repo/:owner/:repo'
-          element={<Dashboard />}
+          element={<RepoDetails />}
         />
 
       </Routes>
