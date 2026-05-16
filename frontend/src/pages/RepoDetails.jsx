@@ -3,11 +3,14 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getSingleRepoDetails } from '../features/repos/singleRepoDetailsSlice'
+import { useNavigate } from 'react-router-dom'
 
 const RepoDetails = () => {
 
+    //It will give us current Owner and Repo
     const { owner, repo } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     //access redux store data
     const { languages, repoContributors, loading } = useSelector((state) => state.repoDetails);
@@ -20,6 +23,11 @@ const RepoDetails = () => {
 
     //Loading and Error Handle
     if (loading) return <p>Loading...</p>;
+
+    //handle click operation for navigate
+    const handleRowClick = (contributor) => {
+        navigate(`/repo/${owner}/${repo}/contributor/${contributor.login}`);
+    };
 
 
     // // Convert languages > percentage
@@ -68,25 +76,35 @@ const RepoDetails = () => {
                     {repoContributors?.length === 0 ? (
                         <p>No contributors found</p>
                     ) : (
-                        <ul className="space-y-3">
+                        <ul
+                            className="space-y-3"
+                        >
+
                             {repoContributors?.map((contributor) => (
                                 <li
                                     key={contributor.id}
                                     className="flex items-center gap-3"
+                                    onClick={() => handleRowClick(contributor)}
                                 >
                                     <img
                                         src={contributor.avatar_url}
                                         alt={contributor.login}
                                         className="h-10 rounded-full"
                                     />
+
                                     <div>
                                         <p className="font-medium">{contributor.login}</p>
-                                        <p className="text-sm text-gray-500">
+
+                                        <p
+                                            className="text-sm text-gray-500">
                                             Contributions: {contributor.contributions}
                                         </p>
+
                                     </div>
+
                                 </li>
                             ))}
+
                         </ul>
                     )}
                 </div>

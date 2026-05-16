@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home'
 import Dashboard from '../pages/Dashboard'
 import RepoDetails from '../pages/RepoDetails'
+import ContributorDetails from '../pages/ContributorDetails'
 
 const AppRoutes = () => {
   return (
@@ -25,6 +26,12 @@ const AppRoutes = () => {
         <Route
           path='/repo/:owner/:repo'
           element={<RepoDetails />}
+        />
+
+        {/* Contributor Detail (dynamic) */}
+        <Route
+          path='/repo/:owner/:repo/contributor/:username'
+          element={<ContributorDetails />}
         />
 
       </Routes>
