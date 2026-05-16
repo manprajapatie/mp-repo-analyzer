@@ -77,7 +77,7 @@ const RepoDetails = () => {
                                     <img
                                         src={contributor.avatar_url}
                                         alt={contributor.login}
-                                        className="h-2 rounded-full"
+                                        className="h-10 rounded-full"
                                     />
                                     <div>
                                         <p className="font-medium">{contributor.login}</p>

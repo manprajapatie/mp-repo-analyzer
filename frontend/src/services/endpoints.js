@@ -9,6 +9,9 @@ export const ENDPOINTS = {
     //get pull request endpoint
     GET_PULLS: (owner, repo) => `/repos/${owner}/${repo}/pulls?state=closed`,
 
+    //get All branches
+    GET_USERDETAILS: (owner, repo, username) => `/repos/${owner}/${repo}/commits?author=${username}`,
+
 
     //get language endpoint
     GET_LANGUAGE: (owner, repo) => `/repos/${owner}/${repo}/languages`,

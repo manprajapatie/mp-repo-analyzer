@@ -6,6 +6,7 @@ import singleRepoDetailsReducer from "../features/repos/singleRepoDetailsSlice"
 //import teamReducer from "../features/teams/teamSlice"
 import pullReducer from "../features/pulls/pullSlice"
 import analyticsReducer from "../features/analytics/analyticsSlice"
+import userDetailsReducer from '../features/userdetails/userdetailsSlice'
 
 import searchReducer from "../features/search/searchSlice"
 
@@ -16,6 +17,7 @@ export const store = configureStore({
         repos: repoReducer,
         //single repo detail
         repoDetails: singleRepoDetailsReducer,
+        userDetails: userDetailsReducer,
         //teams: teamReducer,
         pulls: pullReducer,
         analytics: analyticsReducer,
