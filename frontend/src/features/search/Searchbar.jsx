@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSearchQuery } from './searchSlice'
 import { useNavigate } from 'react-router-dom'
+import { motion } from "motion/react"
 
 const Searchbar = () => {
 
