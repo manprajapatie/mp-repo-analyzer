@@ -19,6 +19,9 @@ export const ENDPOINTS = {
     //get contributors endpoint in perticular repo
     GET_CONTRIBUTORS: (owner, repo) => `/repos/${owner}/${repo}/contributors`,
 
+    //get Commit Details Endpoint
+    GET_CONTRIBUTORS: (owner, repo, sha) => `/repos/${owner}/${repo}/commits/${sha}`,
+
     //get Commit endpoint
     GET_COMMITS: (owner, repo) => `/repos/${owner}/${repo}/commits`,
 };
