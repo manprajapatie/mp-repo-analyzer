@@ -24,7 +24,6 @@ export const getContributors = (owner, repo) => handleRequest(() => axiosInstanc
 
 //get userDetails
 export const getUserDetails = (owner, repo, username) => handleRequest(() => axiosInstance.get(ENDPOINTS.GET_USERDETAILS(owner, repo, username)))
-
 //get Commits
 export const getCommits = (owner, repo) => handleRequest(() => axiosInstance.get(ENDPOINTS.GET_COMMITS(owner, repo)))
 

@@ -7,7 +7,7 @@ export const fetchUserDetails = createAsyncThunk(
     async ({ owner, repo, username }, { rejectWithValue }) => {
         try {
             const response = await getUserDetails(owner, repo, username);
-            return response.data; // Adjust based on your API response
+            return response; // Adjust based on your API response
         } catch (err) {
             return rejectWithValue(err.message || "Failed to fetch user details");
         }
