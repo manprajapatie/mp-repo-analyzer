@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { fetchUserDetails } from '../features/userdetails/userdetailsSlice';
+import { fetchCommitDetails } from '../features/commitDetails/commitDetailsSlice';
+import CommitViewer from '../components/commit/CommitViewer';
 
 const ContributorDetails = () => {
 
@@ -39,34 +41,37 @@ const ContributorDetails = () => {
 
         <div className='space-y-4'>
 
-          {data?.map((item) => (
 
-            < div
-              key={item.sha}
-              className='border p-4 rounded-lg shadow'
-            >
+          {/* LEFT SIDE */}
+          <div className="col-span-4 border-r overflow-y-auto p-4">
 
-              <h2 className='font-semibold text-lg'> {item?.commit?.message || 'No commit message'}</h2>
-              <p>SHA: {item.sha} </p>
-              <p> Author: {item?.commit?.author?.name || 'Unknown Author'} </p>
-              <p>
-                Date:
-                {" "}
-                {
-                  item?.commit?.author?.date
-                    ? new Date(
-                      item.commit.author.date
-                    ).toLocaleString()
-                    : "No Date"
+            {data?.map((item) => (
+              <div
+                key={item.sha}
+                onClick={() =>
+                  dispatch(
+                    fetchCommitDetails({
+                      owner,
+                      repo,
+                      sha: item.sha
+                    })
+                  )
                 }
-              </p>
+                className="border p-4 mb-4 cursor-pointer rounded-lg"
+              >
+                <h2>
+                  {item.commit.message}
+                </h2>
+              </div>
 
-            </div>
+            ))}
 
-          ))}
+          </div>
+
+          {/*Right Side */}
+          <CommitViewer />
 
         </div>
-
       </div >
     </>
   )

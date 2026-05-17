@@ -49,9 +49,7 @@ const commitDetailsSlice = createSlice({
                 (state, action) => {
 
                     state.loading = false;
-
-                    state.selectedCommit =
-                        action.payload;
+                    state.selectedCommit = action.payload;
                 }
             )
 
@@ -59,12 +57,9 @@ const commitDetailsSlice = createSlice({
                 fetchCommitDetails.rejected,
                 (state, action) => {
                     state.loading = false;
-
-                    state.error =
-                        action.payload;
+                    state.error = action.payload;
                 }
             );
-
     }
 })
 

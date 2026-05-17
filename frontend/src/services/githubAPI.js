@@ -23,7 +23,7 @@ export const getLanguages = (owner, repo) => handleRequest(() => axiosInstance.g
 export const getContributors = (owner, repo) => handleRequest(() => axiosInstance.get(ENDPOINTS.GET_CONTRIBUTORS(owner, repo)))
 
 //get Commit Details
-export const getCommitDetails = (owner, repo, sha) => handleRequest(() => axiosInstance.get(ENDPOINTS.GET_CONTRIBUTORS(owner, repo, sha)))
+export const getCommitDetails = (owner, repo, sha) => handleRequest(() => axiosInstance.get(ENDPOINTS.GET_COMMITDETAILS(owner, repo, sha)))
 
 //get userDetails
 export const getUserDetails = (owner, repo, username) => handleRequest(() => axiosInstance.get(ENDPOINTS.GET_USERDETAILS(owner, repo, username)))

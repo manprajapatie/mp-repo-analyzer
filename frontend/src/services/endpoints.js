@@ -20,7 +20,7 @@ export const ENDPOINTS = {
     GET_CONTRIBUTORS: (owner, repo) => `/repos/${owner}/${repo}/contributors`,
 
     //get Commit Details Endpoint
-    GET_CONTRIBUTORS: (owner, repo, sha) => `/repos/${owner}/${repo}/commits/${sha}`,
+    GET_COMMITDETAILS: (owner, repo, sha) => `/repos/${owner}/${repo}/commits/${sha}`,
 
     //get Commit endpoint
     GET_COMMITS: (owner, repo) => `/repos/${owner}/${repo}/commits`,

@@ -7,8 +7,10 @@ import singleRepoDetailsReducer from "../features/repos/singleRepoDetailsSlice"
 import pullReducer from "../features/pulls/pullSlice"
 import analyticsReducer from "../features/analytics/analyticsSlice"
 import userDetailsReducer from '../features/userdetails/userdetailsSlice'
+import commitDetailsReducer from '../features/commitDetails/commitDetailsSlice'
 
 import searchReducer from "../features/search/searchSlice"
+
 
 
 export const store = configureStore({
@@ -18,6 +20,8 @@ export const store = configureStore({
         //single repo detail
         repoDetails: singleRepoDetailsReducer,
         userDetails: userDetailsReducer,
+        //Commit Details
+        commitDetails: commitDetailsReducer,
         //teams: teamReducer,
         pulls: pullReducer,
         analytics: analyticsReducer,
