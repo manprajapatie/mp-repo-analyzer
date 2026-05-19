@@ -1,6 +1,10 @@
 import React from 'react'
 import { motion } from 'motion/react'
 import Searchbar from '../features/search/Searchbar'
+import img1 from "../assets/ourWorkImg/img1.png"
+import img2 from "../assets/ourWorkImg/img2.png"
+import img3 from "../assets/ourWorkImg/img3.png"
+import img4 from "../assets/ourWorkImg/img4.png"
 
 
 const Home = () => {
@@ -147,16 +151,16 @@ const Home = () => {
           <p className="mt-2 text-sm text-slate-400">Advanced diagnostic profiles created straight from source data.</p>
         </div>
 
-        {/* 4 Image Containers acting as visual "code snapshots" */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* 4 Image Containers */}
+        <div className="grid gap-4 xs:gap-8 xs:mx-8 sm:mx-16 md:mx-0 md:gap-4 lg:gap-6 grid-cols-2 md:grid-cols-4">
           {[1, 2, 3, 4].map((item) => (
             <motion.div
               key={item}
               variants={sectionVariants}
               whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className="group relative aspect-4/3 rounded-xl overflow-hidden border border-slate-800 bg-slate-900/40 p-2 backdrop-blur-sm"
+              className="group relative xs:aspect-auto aspect-square rounded-xl overflow-hidden border border-slate-800 bg-slate-900/40 p-2 backdrop-blur-sm"
             >
-              {/* Top Window Dots Simulation */}
+              {/* Top Dots */}
               <div className="flex gap-1.5 mb-2 px-2 pt-1">
                 <span className="w-2.5 h-2.5 rounded-full bg-rose-500/60" />
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500/60" />
@@ -164,24 +168,23 @@ const Home = () => {
               </div>
 
               {/* Inner content placeholder for Code / Data Graphics */}
-              <div className="w-full h-[calc(100%-20px)] rounded-lg bg-slate-950 border border-slate-800/80 flex items-center justify-center p-4 relative group-hover:border-indigo-500/30 transition-colors">
-                <div className="absolute inset-0 bg-linear-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="w-full h-[calc(100%-20px)] rounded-lg bg-slate-950 border border-slate-800/80 flex items-center justify-center  relative group-hover:border-indigo-500/30 transition-colors">
+                <div className="absolute inset-0 bg-linear-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity object-cover" />
 
                 {/* Abstract graphic lines substituting hardcoded code images */}
-                <div className="w-full space-y-2 opacity-40 group-hover:opacity-60 transition-opacity font-mono text-[10px] text-cyan-400">
-                  <p className="text-indigo-400">import {'{ audit }'} from 'mp-analyzer'</p>
-                  <p className="pl-2 text-slate-400">const performance = await audit(repoUrl);</p>
-                  <p className="pl-2 text-emerald-400">if (performance.score &gt; 90) {'{'}</p>
-                  <p className="pl-4 text-amber-400">console.log("Codebase is stable.");</p>
-                  <p className="pl-2 text-emerald-400">{'}'}</p>
+                <div className="w-full h-full space-y-2 opacity-40 group-hover:opacity-60 transition-opacity font-mono text-[10px] text-cyan-400 object-cover border-solid border-2 ">
+                  {item === 1 && <img src={img1} alt="Metrics Image" className='w-full h-full object-cover rounded-md" ' />}
+                  {item === 2 && <img src={img2} alt="Analysis Image" className='w-full h-full object-cover rounded-md" ' />}
+                  {item === 3 && <img src={img3} alt="PR Activity Image" className='w-full h-full object-cover rounded-md" ' />}
+                  {item === 4 && <img src={img4} alt="Org Performance Image" className='w-full h-full object-cover rounded-md" ' />}
                 </div>
               </div>
 
-              <div className="absolute bottom-4 left-5 text-xs font-medium text-slate-400 group-hover:text-slate-200 transition-colors">
-                {item === 1 && "Contribution Metrics"}
-                {item === 2 && "Commit Analysis"}
-                {item === 3 && "PR Activity Logs"}
-                {item === 4 && "Org Performance"}
+              <div className="absolute bottom-4 left-5 text-xs font-medium text-slate-400 group-hover:text-slate-200 transition-colors ">
+                {item === 1 && <p className='text-shadow-lg'> Contribution Metrics</p>}
+                {item === 2 && <p className='text-shadow-lg'>Commit Analysis</p>}
+                {item === 3 && <p className='text-shadow-lg'>PR Activity Logs</p>}
+                {item === 4 && <p className='text-shadow-lg'>Org Performance</p>}
               </div>
             </motion.div>
           ))}
@@ -204,7 +207,7 @@ const Home = () => {
         </div>
 
         {/* Feature Boxes Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 md:mx-0 mx-6 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, idx) => (
             <motion.div
               key={idx}
