@@ -59,7 +59,7 @@ const Home = () => {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="relative mx-auto lg:max-w-5xl md:max-w-3xl xs:max-w-140 max-w-5xl px-6 pt-26 pb-24 text-center sm:pt-32 lg:px-8 border-solid border-2 border-amber-50"
+        className="relative mx-auto lg:max-w-5xl md:max-w-3xl xs:max-w-140 max-w-5xl px-6 pt-26 pb-24 text-center sm:pt-32 lg:px-8"
       >
         {/* Glow Effects in Background */}
         <div className="absolute top-0 left-1/2 -z-10 h-100 w-150 -translate-x-1/2 bg-indigo-500/10 blur-[120px] rounded-full" />
