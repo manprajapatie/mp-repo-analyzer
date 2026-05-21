@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -27,6 +27,31 @@ const RepoTable = ({ repos }) => {
     const calculatedChartWidth = Math.max(repos.length * minBarWidth, 600);
 
 
+    // Create a reference to the scrollable container element
+    const scrollContainerRef = useRef(null);
+
+    // 2. Intercept vertical wheel scrolling and turn it into horizontal scrolling
+    useEffect(() => {
+        const container = scrollContainerRef.current;
+        if (!container) return;
+
+        const handleWheel = (e) => {
+            // Only take over if the user is scrolling vertically
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                container.scrollLeft += e.deltaY;
+            }
+        };
+
+        // Use passive: false so preventDefault() works smoothly
+        container.addEventListener("wheel", handleWheel, { passive: false });
+
+        return () => {
+            container.removeEventListener("wheel", handleWheel);
+        };
+    }, []);
+
+
     return (
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch w-full">
 
@@ -37,7 +62,9 @@ const RepoTable = ({ repos }) => {
                 </div>
 
                 {/* Scrollable Table Container*/}
-                <div className="flex-1 overflow-y-auto pr-1 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-800">
+
+                {/* Hide Scroll Bar */}
+                <div className="flex-1 overflow-y-auto pr-1 scrollbar-thin [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                     <table className="w-full text-left border-collapse">
                         <thead className="sticky top-0 bg-[#0b1324] z-10 shadow-[0_1px_0_0_#1e293b]">
                             <tr className="text-[11px] font-medium text-slate-500 uppercase tracking-wider">
@@ -95,8 +122,10 @@ const RepoTable = ({ repos }) => {
                     )}
                 </div>
 
-                {/* Horizontal Scroll Chart Canvas */}
-                <div className="w-full overflow-x-auto scrollbar-thin scrollbar-track-slate-950 scrollbar-thumb-slate-800 pb-1">
+                {/* Horizontal Scroll */}
+                <div
+                    ref={scrollContainerRef}
+                    className="  w-full overflow-x-auto scrollbar-thin scrollbar-track-slate-950 scrollbar-thumb-slate-800 pb-1">
                     <div style={{ width: `${calculatedChartWidth}px`, height: '300px' }}>
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart

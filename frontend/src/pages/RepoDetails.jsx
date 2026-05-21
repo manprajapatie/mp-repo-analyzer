@@ -94,17 +94,13 @@ const RepoDetails = () => {
 
                                     <div>
                                         <p className="font-medium">{contributor.login}</p>
-
                                         <p
                                             className="text-sm text-gray-500">
                                             Contributions: {contributor.contributions}
                                         </p>
-
                                     </div>
-
                                 </li>
                             ))}
-
                         </ul>
                     )}
                 </div>
