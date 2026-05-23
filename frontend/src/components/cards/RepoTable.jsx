@@ -125,7 +125,11 @@ const RepoTable = ({ repos }) => {
                 {/* Horizontal Scroll */}
                 <div
                     ref={scrollContainerRef}
-                    className="  w-full overflow-x-auto scrollbar-thin scrollbar-track-slate-950 scrollbar-thumb-slate-800 pb-1">
+                    className="  w-full overflow-x-auto scrollbar-thin scrollbar-track-slate-950 scrollbar-thumb-slate-800 pb-1
+                    [&::-webkit-scrollbar-track]:bg-slate-950/60
+                    [&::-webkit-scrollbar-thumb]:bg-slate-800
+                     [scrollbar-color:#1e293b_#020617]
+                    ">
                     <div style={{ width: `${calculatedChartWidth}px`, height: '300px' }}>
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart

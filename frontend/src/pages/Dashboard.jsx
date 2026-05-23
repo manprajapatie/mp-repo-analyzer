@@ -17,10 +17,11 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
 
-  const orgFromSearch = useSelector((state) => state.search)
+  const orgFromSearch = useSelector((state) => state.search);
 
   //if orgFromSearch have data(that name in reducer query) show it otherwise show default value
-  const org = orgFromSearch?.query || "facebook";
+  const org = orgFromSearch.query;
+  console.log(`${org}`)
 
   const { data: orgData } = useSelector((state) => state.org);
   const { list: repos } = useSelector((state) => state.repos);
@@ -31,10 +32,11 @@ const Dashboard = () => {
   );
 
   useEffect(() => {
+    if (!org || org.trim() === "") return;
     dispatch(fetchOrg(org));
     dispatch(fetchRepos(org));
     //dispatch(fetchTeams(org));
-  }, [org]);
+  }, [org, dispatch]);
 
   useEffect(() => {
     if (repos.length > 0) {

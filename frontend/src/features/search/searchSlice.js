@@ -21,23 +21,23 @@ const searchSlice = createSlice({
             state.isSearchActive = true;
         },
 
-        // Handles multi-select for repositories
-        toggleRepoSelection: (state, action) => {
-            const repoName = action.payload;
-            if (state.selectedRepos.includes(repoName)) {
-                state.selectedRepos = state.selectedRepos.filter(r => r !== repoName)
-            }
-            else {
-                state.selectedRepos.push(repoName)
-            }
-        },
+        // Handles multi-select for repositories // Not Using this Feature for now
+        // toggleRepoSelection: (state, action) => {
+        //     const repoName = action.payload;
+        //     if (state.selectedRepos.includes(repoName)) {
+        //         state.selectedRepos = state.selectedRepos.filter(r => r !== repoName)
+        //     }
+        //     else {
+        //         state.selectedRepos.push(repoName)
+        //     }
+        // },
         // Updates filters (exclude bots, date range)
         updateFilters: (state, action) => {
             state.filters = { ...state.filters, ...action.payload }
         },
 
         // Reset everything when user want
-        resetSearch: () => initialState, // it will remove everything and make object clear
+        resetSearch: () => {(initialState)}, // it will remove everything and make object clear
     }
 })
 

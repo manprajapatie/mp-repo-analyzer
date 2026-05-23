@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'motion/react'
+import {Building2, ClockFading, FolderRoot} from 'lucide-react'
 
 //const StatsCards = ({ org, repos, teams, prVelocity }) => {
 const StatsCards = ({ org, repos, prVelocity }) => {
@@ -8,7 +9,10 @@ const StatsCards = ({ org, repos, prVelocity }) => {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.1 }
+            transition: {
+                delayChildren: 0.2,
+                staggerChildren: 0.12
+            }
         }
     }
 
@@ -18,7 +22,7 @@ const StatsCards = ({ org, repos, prVelocity }) => {
                 initial="hidden"
                 animate="visible"
                 variants={containerVariants}
-                className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4"
+                className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 w-full"
             >
 
                 <Card
@@ -26,6 +30,8 @@ const StatsCards = ({ org, repos, prVelocity }) => {
                     value={org?.login || "-"}
                     subtitle={`Public Repos: ${org?.public_repos || 0}`}
                     accentColor="from-indigo-500 to-indigo-400"
+                    customX={-120}// Pops out to the left
+                    icon = {<Building2 />}
                 />
 
                 <Card
@@ -33,6 +39,8 @@ const StatsCards = ({ org, repos, prVelocity }) => {
                     value={repos.length || 0}
                     subtitle="Monitored Ecosystems"
                     accentColor="from-cyan-500 to-cyan-400"
+                    customX={0} // Stays center
+                    icon = {<FolderRoot />}
                 />
 
 
@@ -43,18 +51,26 @@ const StatsCards = ({ org, repos, prVelocity }) => {
                     value={`${(prVelocity ?? 0).toFixed(1)} days`}
                     subtitle="Average Merge Window"
                     accentColor="from-rose-500 to-rose-400"
+                    customX={120} // Pops out to the right
+                    icon = {<ClockFading />}
                 />
             </motion.div>
         </>
     )
 }
-const Card = ({ title, value, subtitle, accentColor, icon }) => {
+const Card = ({ title, value, subtitle, accentColor, icon, customX = 0 }) => {
     const cardVariants = {
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, y: 20, x: customX, },
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.4, ease: 'easeOut' }
+            x: 0,
+            transition: {
+                type: "spring",
+                stiffness: 75,
+                damping: 14, // Clean spring for elastic settle effect
+                mass: 1.1
+            }
         }
     }
     return (
@@ -77,7 +93,7 @@ const Card = ({ title, value, subtitle, accentColor, icon }) => {
                 <p className="text-xl font-bold">{value}</p>
             </div>
 
-            {/* Decorative contextual text metadata */}
+            {/* Decorative text metadata */}
             <p className="mt-1 text-xs text-slate-400 font-medium">
                 {subtitle}
             </p>
