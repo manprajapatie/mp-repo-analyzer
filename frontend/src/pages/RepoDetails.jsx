@@ -81,8 +81,7 @@ const RepoDetails = () => {
         }
     }
 
-    // Detect if an outlet contributor profile is actively rendered
-    const isWorkspaceActive = !!username;
+  
 
 
     return (
@@ -111,7 +110,7 @@ const RepoDetails = () => {
                     <motion.div
                         layout
                         transition={{ type: "spring", stiffness: 100, damping: 17 }}
-                        className={`grid grid-cols-1 gap-6 ${isWorkspaceActive ? 'lg:col-span-5' : 'lg:col-span-12 max-w-4xl mx-auto w-full'}`}
+                        className={'grid grid-cols-1 gap-6 lg:col-span-3'}
                     >
 
                         {/* Languages Section */}
@@ -230,15 +229,15 @@ const RepoDetails = () => {
 
 
                     {/* --------- Right Section: This will Load Contributor Details Without Changing Page */}
-                    {isWorkspaceActive && (
+                    
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
                             transition={{ type: "spring", stiffness: 100, damping: 18 }}
-                            className="lg:col-span-7 w-full">
+                            className="lg:col-span-9 w-full">
                             <Outlet />
-                        </motion.div>)}
+                        </motion.div>
 
                 </div >
             </div >

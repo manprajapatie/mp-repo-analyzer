@@ -68,7 +68,7 @@ const ContributorDetails = () => {
 
           </div>
 
-          {/*Right Side */}
+          {/*------- Show Commit */}
           <CommitViewer />
 
         </div>
