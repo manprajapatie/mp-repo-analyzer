@@ -26,13 +26,15 @@ const AppRoutes = () => {
         <Route
           path='/repo/:owner/:repo'
           element={<RepoDetails />}
-        />
+        >
+          {/* NestedContributor Detail (dynamic) */}
+          <Route
+            path='/repo/:owner/:repo/contributor/:username'
+            element={<ContributorDetails />}
+          />
+        </Route>
 
-        {/* Contributor Detail (dynamic) */}
-        <Route
-          path='/repo/:owner/:repo/contributor/:username'
-          element={<ContributorDetails />}
-        />
+
 
       </Routes>
     </>

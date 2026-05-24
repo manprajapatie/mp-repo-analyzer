@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getSingleRepoDetails } from '../features/repos/singleRepoDetailsSlice'
 import { useNavigate } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 const RepoDetails = () => {
 
@@ -104,6 +105,11 @@ const RepoDetails = () => {
                         </ul>
                     )}
                 </div>
+            </div>
+
+            {/* This will Load Contributor Details Without Changing Page */}
+            <div className="col-span-7">
+                <Outlet />
             </div>
 
         </>
