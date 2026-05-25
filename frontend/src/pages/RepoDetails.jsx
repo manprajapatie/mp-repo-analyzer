@@ -104,7 +104,7 @@ const RepoDetails = () => {
                 </motion.div>
 
                 {/* Split The Panel, when sub-routes are mounted */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-11 gap-6 items-start">
 
                     {/* ------------- Left Section: Repository Analytics Card --------------- */}
                     <motion.div
@@ -235,7 +235,7 @@ const RepoDetails = () => {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
                             transition={{ type: "spring", stiffness: 100, damping: 18 }}
-                            className="lg:col-span-9 w-full">
+                            className="lg:col-span-8 w-full">
                             <Outlet />
                         </motion.div>
 
