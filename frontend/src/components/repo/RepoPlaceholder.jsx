@@ -30,7 +30,7 @@ const RepoPlaceholder = () => {
 
     return (
         <>
-            <div className="w-full p-5 min-h-208 flex flex-col justify-center items-center text-center rounded-2xl border border-dashed border-slate-800 bg-slate-900/10 backdrop-blur-sm">
+            <div className="w-full p-5 min-h-190 flex flex-col justify-center items-center text-center rounded-2xl border border-dashed border-slate-800 bg-slate-900/10 backdrop-blur-sm">
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"

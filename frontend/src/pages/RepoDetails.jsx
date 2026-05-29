@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -17,6 +17,9 @@ const RepoDetails = () => {
 
     //access redux store data
     const { languages, repoContributors, loading } = useSelector((state) => state.repoDetails);
+
+    //This is using for contributor screen size 
+    const [isMobileExpanded, setIsMobileExpanded] = useState(false);
 
 
     //dispatching owner and repo details
@@ -81,7 +84,7 @@ const RepoDetails = () => {
         }
     }
 
-  
+
 
 
     return (
@@ -104,13 +107,13 @@ const RepoDetails = () => {
                 </motion.div>
 
                 {/* Split The Panel, when sub-routes are mounted */}
-                <div className="grid grid-cols-1 lg:grid-cols-11 gap-6 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-15 gap-6 items-start">
 
                     {/* ------------- Left Section: Repository Analytics Card --------------- */}
                     <motion.div
                         layout
                         transition={{ type: "spring", stiffness: 100, damping: 17 }}
-                        className={'grid grid-cols-1 gap-6 lg:col-span-3'}
+                        className={'grid grid-cols-1 gap-6 md:col-span-6 lg:col-span-5 '}
                     >
 
                         {/* Languages Section */}
@@ -171,15 +174,34 @@ const RepoDetails = () => {
                         </div>
 
                         {/* Contributors Section */}
-                        <div className="rounded-2xl border border-slate-900 bg-slate-900/40 p-5 backdrop-blur-sm shadow-xl flex flex-col max-h-115">
+                        {/* Header with reactive mobile button */}
+                        <div className="flex items-center justify-between mb-3">
+                            <h2 className="text-sm font-semibold tracking-wider uppercase text-slate-400">
+                                Contributors
+                            </h2>
+                            {/* Only visible below 'md' screens to toggle the selection box view */}
+                            {username && (
+                                <button
+                                    onClick={() => setIsMobileExpanded(!isMobileExpanded)}
+                                    className="md:hidden text-xs text-indigo-400 font-medium px-2 py-1 rounded bg-indigo-500/10 border border-indigo-500/20"
+                                >
+                                    {isMobileExpanded ? 'Collapse List' : 'View All Profiles'}
+                                </button>
+                            )}
+                        </div>
+
+
+                        {/* Scrollable Container Wrapper */}
+                        <div className="rounded-2xl border border-slate-900 bg-slate-900/40 p-5 backdrop-blur-sm shadow-xl flex flex-col max-h-96">
                             <h2 className="text-sm font-semibold tracking-wider uppercase text-slate-400 mb-3">Contributors</h2>
-                            <div className="overflow-y-auto pr-1 flex-1 
+                            <div className={`overflow-y-auto pr-1 flex-1 
                                         scrollbar-thin
                                         [&::-webkit-scrollbar]:w-1.5
                                         [&::-webkit-scrollbar-track]:bg-transparent
                                         [&::-webkit-scrollbar-thumb]:bg-slate-800
                                         [&::-webkit-scrollbar-thumb]:rounded-full
-                                        hover:[&::-webkit-scrollbar-thumb]:bg-indigo-500/40">
+                                        hover:[&::-webkit-scrollbar-thumb]:bg-indigo-500/40
+                                        ${username && isMobileExpanded ? 'max-h-60 border border-slate-800/80 p-1 rounded-xl bg-slate-950/40 md:border-transparent md:bg-transparent md:max-h-none' : ''} `}>
                                 {repoContributors?.length === 0 ? (
                                     <p className="text-xs text-slate-500 p-2">No contributors profiles found</p>
                                 ) : (
@@ -187,13 +209,28 @@ const RepoDetails = () => {
 
                                         {repoContributors?.map((contributor) => {
                                             const isSelected = username === contributor.login;
+                                            {/* Hide all unselected profiles on mobile when the dropdown box is collapsed
+                                                
+                                                hiding logic ONLY applies if the screen is actually small*/ }
+
+                                            // const isMobileScreen = typeof window !== 'undefined' ? window.innerWidth < 768 : true;
+                                            const shouldHideOnMobile = username && !isSelected && !isMobileExpanded;
                                             return (
                                                 <div key={contributor.id}
                                                     className={`flex items-center justify-between py-3 px-2 cursor-pointer rounded-xl transition-all duration-200 my-1 group
+                                                    ${shouldHideOnMobile ? 'hidden md:flex' : 'flex'}
                                                     ${isSelected
-                                                            ? 'bg-indigo-500/10 border border-indigo-500/30 text-slate-100'
-                                                            : 'hover:bg-slate-800/30 border border-transparent text-slate-400 hover:text-slate-200'}`}
-                                                    onClick={() => handleRowClick(contributor)}
+                                                        ? 'bg-indigo-500/10 border border-indigo-500/30 text-slate-100'
+                                                        : 'hover:bg-slate-800/30 border border-transparent text-slate-400 hover:text-slate-200'
+                                                    }
+                                                    `}
+                                                    onClick={() => {
+                                                        handleRowClick(contributor);
+                                                        {/* Collapse the dropdown box automatically on selection */ }
+                                                        setIsMobileExpanded(false);
+                                                    }
+                                                    }
+
                                                 >
                                                     <div className="flex items-center gap-3 w-full justify-between">
                                                         <div className='flex items-center  gap-3'>
@@ -206,6 +243,12 @@ const RepoDetails = () => {
 
                                                             <div className="font-medium">
                                                                 {contributor.login}
+                                                                {/*Added a helpful mobile badge showing which profile is currently selected */}
+                                                                {/* {isSelected && (
+                                                                    <span className="md:hidden text-[9px] bg-indigo-500/20 text-indigo-300 px-1.5 py-0.5 rounded-md font-mono uppercase tracking-wider">
+                                                                        Active
+                                                                    </span>
+                                                                )} */}
                                                             </div>
                                                         </div>
                                                         <div className="text-right shrink-0" >
@@ -229,15 +272,15 @@ const RepoDetails = () => {
 
 
                     {/* --------- Right Section: This will Load Contributor Details Without Changing Page */}
-                    
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 20 }}
-                            transition={{ type: "spring", stiffness: 100, damping: 18 }}
-                            className="lg:col-span-8 w-full">
-                            <Outlet />
-                        </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        transition={{ type: "spring", stiffness: 100, damping: 18 }}
+                        className="md:col-span-9 lg:col-span-10 w-full">
+                        <Outlet />
+                    </motion.div>
 
                 </div >
             </div >
