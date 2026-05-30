@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home'
 import Dashboard from '../pages/Dashboard'
 import RepoDetails from '../pages/RepoDetails'
-import ContributorDetails from '../pages/ContributorDetails'
+import ContributorCommitDetails from '../pages/ContributorCommitDetails'
 import RepoPlaceholder from '../components/repo/RepoPlaceholder'
 
 const AppRoutes = () => {
@@ -34,7 +34,7 @@ const AppRoutes = () => {
           <Route index element={<RepoPlaceholder />} />
           <Route
             path='/repo/:owner/:repo/contributor/:username'
-            element={<ContributorDetails />}
+            element={<ContributorCommitDetails />}
           />
         </Route>
 

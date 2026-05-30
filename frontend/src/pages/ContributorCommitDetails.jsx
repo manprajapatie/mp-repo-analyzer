@@ -5,7 +5,7 @@ import { fetchUserDetails } from '../features/userdetails/userdetailsSlice';
 import { fetchCommitDetails } from '../features/commitDetails/commitDetailsSlice';
 import CommitViewer from '../components/commit/CommitViewer';
 
-const ContributorDetails = () => {
+const ContributorCommitDetails = () => {
 
   const { owner, repo, username } = useParams();
 
@@ -77,4 +77,4 @@ const ContributorDetails = () => {
   )
 }
 
-export default ContributorDetails
+export default ContributorCommitDetails

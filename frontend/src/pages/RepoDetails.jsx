@@ -243,12 +243,7 @@ const RepoDetails = () => {
 
                                                             <div className="font-medium">
                                                                 {contributor.login}
-                                                                {/*Added a helpful mobile badge showing which profile is currently selected */}
-                                                                {/* {isSelected && (
-                                                                    <span className="md:hidden text-[9px] bg-indigo-500/20 text-indigo-300 px-1.5 py-0.5 rounded-md font-mono uppercase tracking-wider">
-                                                                        Active
-                                                                    </span>
-                                                                )} */}
+                                                                
                                                             </div>
                                                         </div>
                                                         <div className="text-right shrink-0" >
