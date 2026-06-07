@@ -107,18 +107,19 @@ const RepoDetails = () => {
                 </motion.div>
 
                 {/* Split The Panel, when sub-routes are mounted */}
-                <div className="grid grid-cols-1 md:grid-cols-15 gap-6 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
 
                     {/* ------------- Left Section: Repository Analytics Card --------------- */}
                     <motion.div
                         layout
                         transition={{ type: "spring", stiffness: 100, damping: 17 }}
-                        className={'grid grid-cols-1 gap-6 md:col-span-6 lg:col-span-5 '}
+                        className={'grid gap-2 grid-cols-1 xs:grid-cols-12 md:grid-cols-1 sm:col-span-4 lg:col-span-3 '}
                     >
 
                         {/* Languages Section */}
                         {/* Languages Radar Section */}
-                        <div className="rounded-2xl border border-slate-900 bg-slate-900/40 p-5 backdrop-blur-sm shadow-xl flex flex-col items-center">
+                        <div className="rounded-2xl border border-slate-900 bg-slate-900/40 p-5 backdrop-blur-sm shadow-xl flex flex-col items-center xs:col-span-6 md:col-span-5
+">
                             <div className="w-full text-left mb-2">
                                 <h2 className="text-sm font-semibold tracking-wider uppercase text-slate-400">Languages Distribution</h2>
                                 <p className="text-[11px] text-slate-500 mt-0.5">Top 5 core languages vs stacked residuals</p>
@@ -127,8 +128,8 @@ const RepoDetails = () => {
                             {radarChartData.length === 0 ? (
                                 <p className="text-xs text-slate-500 py-12">No language distribution metrics recorded</p>
                             ) : (
-                                <div className="w-full h-64 mt-2">
-                                    <ResponsiveContainer width="100%" height="100%">
+                                <div className="w-full h-54 mt-2 flex items-center justify-center">
+                                    <ResponsiveContainer width="100%" height="80%" className="flex ">
                                         <RadarChart cx="50%" cy="50%" radius="75%" data={radarChartData}>
                                             {/* Dark theme grid lines */}
                                             <PolarGrid stroke="#1e293b" />
@@ -174,26 +175,27 @@ const RepoDetails = () => {
                         </div>
 
                         {/* Contributors Section */}
-                        {/* Header with reactive mobile button */}
-                        <div className="flex items-center justify-between mb-3">
-                            <h2 className="text-sm font-semibold tracking-wider uppercase text-slate-400">
-                                Contributors
-                            </h2>
-                            {/* Only visible below 'md' screens to toggle the selection box view */}
-                            {username && (
-                                <button
-                                    onClick={() => setIsMobileExpanded(!isMobileExpanded)}
-                                    className="md:hidden text-xs text-indigo-400 font-medium px-2 py-1 rounded bg-indigo-500/10 border border-indigo-500/20"
-                                >
-                                    {isMobileExpanded ? 'Collapse List' : 'View All Profiles'}
-                                </button>
-                            )}
-                        </div>
+
 
 
                         {/* Scrollable Container Wrapper */}
-                        <div className="rounded-2xl border border-slate-900 bg-slate-900/40 p-5 backdrop-blur-sm shadow-xl flex flex-col max-h-96">
+                        <div className="rounded-2xl border border-slate-900 bg-slate-900/40 p-5 backdrop-blur-sm shadow-xl flex flex-col max-h-83 xs:col-span-6  md:col-span-5">
                             <h2 className="text-sm font-semibold tracking-wider uppercase text-slate-400 mb-3">Contributors</h2>
+
+                            {/* Header with reactive mobile button */}
+                            <div className="flex items-center justify-between mb-3 ">
+
+                                {/* Only visible below 'md' screens to toggle the selection box view */}
+                                {username && (
+                                    <button
+                                        onClick={() => setIsMobileExpanded(!isMobileExpanded)}
+                                        className="md:hidden text-xs text-indigo-400 font-medium px-2 py-1 rounded bg-indigo-500/10 border border-indigo-500/20"
+                                    >
+                                        {isMobileExpanded ? 'Collapse List' : 'View All Profiles'}
+                                    </button>
+                                )}
+                            </div>
+
                             <div className={`overflow-y-auto pr-1 flex-1 
                                         scrollbar-thin
                                         [&::-webkit-scrollbar]:w-1.5
@@ -205,7 +207,7 @@ const RepoDetails = () => {
                                 {repoContributors?.length === 0 ? (
                                     <p className="text-xs text-slate-500 p-2">No contributors profiles found</p>
                                 ) : (
-                                    <div className="divide-y divide-slate-900/60">
+                                    <div className="divide-y divide-slate-900/60 ">
 
                                         {repoContributors?.map((contributor) => {
                                             const isSelected = username === contributor.login;
@@ -217,12 +219,12 @@ const RepoDetails = () => {
                                             const shouldHideOnMobile = username && !isSelected && !isMobileExpanded;
                                             return (
                                                 <div key={contributor.id}
-                                                    className={`flex items-center justify-between py-3 px-2 cursor-pointer rounded-xl transition-all duration-200 my-1 group
+                                                    className={`flex items-center justify-between py-3 px-2 cursor-pointer rounded-xl transition-all duration-200  my-1 group
                                                     ${shouldHideOnMobile ? 'hidden md:flex' : 'flex'}
                                                     ${isSelected
-                                                        ? 'bg-indigo-500/10 border border-indigo-500/30 text-slate-100'
-                                                        : 'hover:bg-slate-800/30 border border-transparent text-slate-400 hover:text-slate-200'
-                                                    }
+                                                            ? 'bg-indigo-500/10 border border-indigo-500/30 text-slate-100'
+                                                            : 'hover:bg-slate-800/30 border border-transparent text-slate-400 hover:text-slate-200'
+                                                        }
                                                     `}
                                                     onClick={() => {
                                                         handleRowClick(contributor);
@@ -233,7 +235,7 @@ const RepoDetails = () => {
 
                                                 >
                                                     <div className="flex items-center gap-3 w-full justify-between">
-                                                        <div className='flex items-center  gap-3'>
+                                                        <div className='flex items-center gap-3'>
                                                             <img
                                                                 src={contributor.avatar_url}
                                                                 alt={contributor.login}
@@ -243,7 +245,7 @@ const RepoDetails = () => {
 
                                                             <div className="font-medium">
                                                                 {contributor.login}
-                                                                
+
                                                             </div>
                                                         </div>
                                                         <div className="text-right shrink-0" >
@@ -273,7 +275,7 @@ const RepoDetails = () => {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 20 }}
                         transition={{ type: "spring", stiffness: 100, damping: 18 }}
-                        className="md:col-span-9 lg:col-span-10 w-full">
+                        className="sm:col-span-8 lg:col-span-9 w-full">
                         <Outlet />
                     </motion.div>
 

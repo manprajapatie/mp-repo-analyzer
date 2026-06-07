@@ -30,22 +30,22 @@ const RepoPlaceholder = () => {
 
     return (
         <>
-            <div className="w-full p-5 min-h-190 flex flex-col justify-center items-center text-center rounded-2xl border border-dashed border-slate-800 bg-slate-900/10 backdrop-blur-sm">
+            <div className="w-full p-5 min-h-168 flex flex-col justify-center items-center text-center rounded-2xl  bg-slate-900/10 backdrop-blur-sm">
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
-                    className="w-full max-w-2xl px-6 py-12 flex flex-col justify-center items-center text-center rounded-2xl border border-dashed border-slate-800/80  backdrop-blur-md shadow-2xl relative overflow-hidden"
+                    className="w-full lg:max-w-2xl px-6 py-12 flex flex-col justify-center items-center text-center rounded-2xl backdrop-blur-md shadow-2xl relative overflow-hidden"
                 >
 
-                    {/* Primary Heading with Lines & Right-to-Left Character Pops */}
+                    {/* Heading with Lines & Right to Left Character animation */}
                     <motion.h1
                         initial="hidden"
                         animate="visible"
                         transition={{ staggerChildren: 0.2 }}
-                        className="text-2xl sm:text-3xl md:text-7xl font-extrabold text-white tracking-normal leading-none text-right uppercase"
+                        className="text-3xl xs:text-4xl sm:text-6xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-normal leading-none text-right uppercase"
                     >
-                        {/* Line 1 */}
+                        {/* Line 1 */} 
                         <motion.div
                             variants={{
                                 hidden: { opacity: 0, y: 20 },
@@ -146,7 +146,7 @@ const RepoPlaceholder = () => {
                                 // the animation only plays once when seen
                                 viewport={{ once: true, margin: "-50px" }}
 
-                                className="inline-block font-black origin-center cursor-default text-4xl">
+                                className="inline-block font-black origin-center cursor-default md:text-4xl text-2xl">
                                 {char === " " ? "\u00A0" : char}
                             </motion.span>
                         ))
