@@ -1,8 +1,9 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Searchbar from '../../features/search/Searchbar'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { motion } from "motion/react"
+import logo from "../../assets/logo/mpRepoAnalyzer.png"
 
 const Header = () => {
 
@@ -23,26 +24,28 @@ const Header = () => {
         className="fixed top-0 z-50 w-full border-b border-slate-800 bg-slate-900/70 backdrop-blur-md flex sm:py-3 py-1 md:px-10 px-4 justify-between"
       >
         {/* Logo  */}
-        <div className="flex items-center gap-2">
-          <span className="text-xl font-bold text-white ">
-            MPR
-          </span>
+        <div className="flex items-center gap-2 cursor-pointer">
+
+          {/* When user Click on logo, they will redirect to home page */}
+          <Link to="/" >
+            <img src={logo} alt="MRP" className='h-11' />
+          </Link>
         </div>
 
         {/* Searchbar */}
 
         {isHomeRoute ? (
-           //This displays ONLY on the Home Route (/)
-           <div className='flex md:w-96 sm:w-72 justify-end md:justify-center max-w-md ml-4 border-solid border-2 text-white '>
+          //This displays ONLY on the Home Route (/)
+          <div className='flex md:w-96 sm:w-72 justify-end md:justify-center max-w-md ml-4 border-solid border-2 text-white '>
             We Analyzer Perfomance
-           </div>
-          ) : (
-            // 2. This displays on ALL OTHER routes
-             <div className="flex md:w-96 sm:w-72 justify-end md:justify-center max-w-md ml-4 border-solid border-2 ">
-          <Searchbar />
-        </div>
-          )}
-       
+          </div>
+        ) : (
+          // 2. This displays on ALL OTHER routes
+          <div className="flex md:w-96 sm:w-72 justify-end md:justify-center max-w-md ml-4 border-solid border-2 ">
+            <Searchbar />
+          </div>
+        )}
+
 
         {/* --- GLOWING TRAVELING BOTTOM LINE --- */}
         <div className="absolute bottom-0 left-0 h-0.5 w-full overflow-hidden">
