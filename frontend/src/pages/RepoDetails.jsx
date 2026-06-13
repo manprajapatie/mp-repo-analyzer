@@ -7,6 +7,7 @@ import { getSingleRepoDetails } from '../features/repos/singleRepoDetailsSlice'
 import { useNavigate } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
+import RepoDetailsSkeleton from '../components/skeletons/RepoDetailsSkeleton'
 
 const RepoDetails = () => {
 
@@ -30,9 +31,7 @@ const RepoDetails = () => {
     //Loading and Error Handle
     if (loading) {
         return (
-            <div className="flex items-center justify-center min-h-100">
-                <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-            </div>
+            <RepoDetailsSkeleton/>
         );
     }
 
