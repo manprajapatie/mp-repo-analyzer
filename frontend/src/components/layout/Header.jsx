@@ -35,19 +35,19 @@ const Header = () => {
         {/* Searchbar */}
 
         {isHomeRoute ? (
-          //This displays ONLY on the Home Route (/)
-          <div className='flex md:w-96 sm:w-72 justify-end md:justify-center max-w-md ml-4 border-solid border-2 text-white '>
+          //This displays only on the Home Route (/)
+          <div className='flex md:w-96 sm:w-72 justify-end md:justify-center items-center max-w-md ml-4  text-white '>
             We Analyzer Perfomance
           </div>
         ) : (
-          // 2. This displays on ALL OTHER routes
-          <div className="flex md:w-96 sm:w-72 justify-end md:justify-center max-w-md ml-4 border-solid border-2 ">
+          // This displays on all other routes
+          <div className="flex md:w-96 sm:w-72 justify-end md:justify-center max-w-md ml-4  ">
             <Searchbar />
           </div>
         )}
 
 
-        {/* --- GLOWING TRAVELING BOTTOM LINE --- */}
+        {/* Glowing Bottom Line */}
         <div className="absolute bottom-0 left-0 h-0.5 w-full overflow-hidden">
           <div
             className="w-[200%] h-full opacity-90"

@@ -64,7 +64,7 @@ const RepoDetailsSkeleton = () => {
 
                 {/* --------- Right Section Skeleton --------- */}
                 <div className="sm:col-span-8 lg:col-span-9 w-full">
-                    <div className="rounded-2xl border border-slate-900 bg-slate-900/40 p-6 backdrop-blur-sm min-h-[400px]">
+                    <div className="rounded-2xl border border-slate-900 bg-slate-900/40 p-6 backdrop-blur-sm min-h-100">
                         <div className="flex items-center gap-4 mb-6">
                             <div className="h-16 w-16 rounded-full bg-slate-800"></div>
                             <div className="space-y-2">
