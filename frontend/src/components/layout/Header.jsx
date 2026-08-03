@@ -21,7 +21,7 @@ const Header = () => {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="fixed top-0 z-50 w-full border-b border-slate-800 bg-slate-900/70 backdrop-blur-md flex sm:py-3 py-1 md:px-10 px-4 justify-between"
+        className="fixed top-0 z-50 w-full border-b border-b-blue-500 bg-slate-900/70 backdrop-blur-md flex sm:py-3 py-1 md:px-10 px-4 justify-between"
       >
         {/* Logo  */}
         <div className="flex items-center gap-2 cursor-pointer">
@@ -48,7 +48,7 @@ const Header = () => {
 
 
         {/* Glowing Bottom Line */}
-        <div className="absolute bottom-0 left-0 h-0.5 w-full overflow-hidden">
+        {/* <div className="absolute bottom-0 left-0 h-0.5 w-full overflow-hidden">
           <div
             className="w-[200%] h-full opacity-90"
             style={{
@@ -56,7 +56,7 @@ const Header = () => {
               animation: 'travel 10s linear infinite',
             }}
           />
-        </div>
+        </div> */}
       </motion.header>
     </>
   )

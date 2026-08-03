@@ -54,7 +54,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-indigo-500/30 overflow-x-hidden">
 
-      {/* -------------------SECTION 1: Hero Container */}
+      {/* -------------------SECTION 1 Hero Container */}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -62,8 +62,8 @@ const Home = () => {
         className="relative mx-auto lg:max-w-5xl md:max-w-3xl xs:max-w-140 max-w-5xl px-6 pt-26 pb-24 text-center sm:pt-32 lg:px-8"
       >
         {/* Glow Effects in Background */}
-        <div className="absolute top-0 left-1/2 -z-10 h-100 w-150 -translate-x-1/2 bg-indigo-500/10 blur-[120px] rounded-full" />
-        <div className="absolute top-20 left-1/3 -z-10 h-62.5 w-100 bg-cyan-500/5 blur-[100px] rounded-full" />
+        <div className="absolute top-0 left-1/2 -z-10 h-100 w-150" />
+        <div className="absolute top-20 left-1/3 -z-10 h-62.5 w-100 " />
 
         {/* Animated App Name */}
         <motion.h1
@@ -77,19 +77,11 @@ const Home = () => {
           }}
           className=" font-extrabold tracking-tight text-[1.5rem] xs:text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl">
           Optimize Your GitHub with <br />
-          <motion.span
-            animate={{
-              backgroundImage: [
-                "linear-gradient(to right, #818cf8, #38bdf8)",
-                "linear-gradient(to right, #34d399, #818cf8)",
-                "linear-gradient(to right, #818cf8, #38bdf8)"
-              ]
-            }}
-            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-            className="bg-clip-text text-transparent bg-linear-to-r from-indigo-400 to-cyan-400"
+          <div
+            className="bg-clip-text text-blue-500"
           >
             MP Repo Analyzer
-          </motion.span>
+          </div>
         </motion.h1>
 
 
@@ -137,7 +129,7 @@ const Home = () => {
       </motion.section>
 
 
-      {/* -----------------SECTION 2: Code Image Card */}
+      {/* -----------------SECTION 2 Code Image Card */}
       <motion.section
         initial="hidden"
         whileInView="visible"
@@ -151,7 +143,7 @@ const Home = () => {
           <p className="mt-2 text-sm text-slate-400">Advanced diagnostic profiles created straight from source data.</p>
         </div>
 
-        {/* 4 Image Containers */}
+        {/* Image Containers */}
         <div className="grid gap-4 xs:gap-8 xs:mx-8 sm:mx-16 md:mx-0 md:gap-4 lg:gap-6 grid-cols-2 md:grid-cols-4">
           {[1, 2, 3, 4].map((item) => (
             <motion.div
@@ -192,7 +184,7 @@ const Home = () => {
       </motion.section>
 
 
-      {/* ---------- SECTION 3: Detail Information Boxes*/}
+      {/* ---------- SECTION 3 Detail Information Boxes*/}
       <motion.section
         initial="hidden"
         whileInView="visible"
@@ -206,7 +198,7 @@ const Home = () => {
           <p className="mt-4 text-lg text-slate-400">Everything you need to understand performance metrics at scale.</p>
         </div>
 
-        {/* Feature Boxes Grid */}
+        {/* Feature Boxes */}
         <div className="grid grid-cols-1 md:mx-0 mx-6 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, idx) => (
             <motion.div
